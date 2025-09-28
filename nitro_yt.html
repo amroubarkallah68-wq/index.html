@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>NITRO YT</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+      color: #fff;
+    }
+    header {
+      background: #0d1b2a;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      background-color: #0d4aa0; /* المستطيل الأزرق */
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #ffffff; /* النص باللون الأبيض */
+      text-transform: uppercase; /* الحروف كبيرة */
+    }
+    .balance {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #00d4ff;
+      color: #0d1b2a;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+    .balance span {
+      margin-right: 8px;
+    }
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #00d4ff;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      color: #00d4ff;
+    }
+    .card p {
+      margin: 0 0 15px;
+      font-size: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #00d4ff;
+      color: #0d1b2a;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #00aacc;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      background: #0d1b2a;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NITRO YT</h1>
+  </header>
+
+  <div class="balance" onclick="alert('رصيدك الحالي: ' + points + ' ★')">
+    <span id="points">0</span> ★
+  </div>
+
+  <main>
+    <h2 class="section-title">🎮 متجر المكافآت</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="https://via.placeholder.com/300x200.png?text=%D8%A8%D9%88%D9%8A%D8%A7+%D8%A8%D8%A7%D8%B3" alt="بويا باس">
+        <h3>بويا باس</h3>
+        <p>السعر: 50 ★</p>
+        <a href="#" class="btn">شراء</a>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300x200.png?text=%D8%B3%D9%83%D9%8A%D9%86%D8%A7%D8%AA" alt="سكينات">
+        <h3>سكينات</h3>
+        <p>السعر: 50 ★</p>
+        <a href="#" class="btn">شراء</a>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300x200.png?text=%D8%A7%D9%8A%D9%81%D9%88+%D8%B3%D9%84%D8%A7%D8%AD" alt="ايفو سلاح">
+        <h3>حدث سلاح ايفو</h3>
+        <p>السعر: 50 ★</p>
+        <a href="#" class="btn">شراء</a>
+      </div>
+    </div>
+
+    <h2 class="section-title">⭐ طرق جمع النقاط</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>اشترك في القناة</h3>
+        <p>+1 نقطة</p>
+        <a href="#" class="btn" onclick="goTo('subscribe')">اذهب للقناة</a>
+      </div>
+      <div class="card">
+        <h3>اعمل لايك</h3>
+        <p>+1 نقطة</p>
+        <a href="#" class="btn" onclick="goTo('like')">اذهب للفيديو</a>
+      </div>
+      <div class="card">
+        <h3>فعل الجرس</h3>
+        <p>+1 نقطة</p>
+        <a href="#" class="btn" onclick="goTo('bell')">اذهب للقناة</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 - NITRO YT | جميع الحقوق محفوظة
+  </footer>
+
+  <script>
+    let points = parseInt(localStorage.getItem('points')) || 0;
+    document.getElementById('points').textContent = points;
+
+    const links = {
+      subscribe: "https://youtube.com/@nitroyt_yt?si=P5BjhE6P9EkXhrFl",
+      like: "https://youtube.com/@nitroyt_yt?si=P5BjhE6P9EkXhrFl",
+      bell: "https://youtube.com/@nitroyt_yt?si=P5BjhE6P9EkXhrFl"
+    };
+
+    function goTo(action) {
+      window.open(links[action], '_blank');
+      earnPoints(action);
+    }
+
+    function earnPoints(action) {
+      let done = JSON.parse(localStorage.getItem('actions')) || {};
+      if (done[action]) {
+        alert('لقد أخذت نقاط هذا الخيار من قبل!');
+        return;
+      }
+      points += 1;
+      document.getElementById('points').textContent = points;
+      localStorage.setItem('points', points);
+      done[action] = true;
+      localStorage.setItem('actions', JSON.stringify(done));
+    }
+  </script>
+</body>
+</html>
